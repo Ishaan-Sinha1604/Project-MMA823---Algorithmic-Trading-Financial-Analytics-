@@ -30,8 +30,8 @@ Build and evaluate a Pairs Trading strategy using daily adjusted close prices of
 - Calculate the **Z-Score**: how many standard deviations the short-term MA is from the long-term MA
 
 ### 4. Trading Strategy
-- 'zscore > 1' : ratio is high - short the ratio (short S1, long S2)
-- 'zscore < -1' → ratio is low → long the ratio (long S1, short S2)
+- `zscore > 1` : ratio is high - short the ratio (short S1, long S2)
+- `zscore < -1` → ratio is low → long the ratio (long S1, short S2)
 - Define entry/exit thresholds based on z-scores
 - Backtest the strategy with simple long-short logic
 

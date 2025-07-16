@@ -39,8 +39,9 @@ Build and evaluate a Pairs Trading strategy using daily adjusted close prices of
 - statsmodels
 - Jupyter Notebook
 
-```
+
 ## Repository Structure
+```
 ├── MMA823_Final_Project.ipynb # Main notebook implementing the strategy
 ├── README.md # Project overview
 └── Algo Trading_ver1.pptx # Presentation explaining the entire Project

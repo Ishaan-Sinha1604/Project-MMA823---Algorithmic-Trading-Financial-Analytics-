@@ -25,20 +25,29 @@ Build and evaluate a Pairs Trading strategy using daily adjusted close prices of
 - Perform **Augmented Dickey-Fuller (ADF) test** to determine whether the spread is stationary over time or not
 
 ### 3. Feature Engineering
-- Calculate ratio of prices of the pair of stocks. This becomes a new time-series
+- Calculate ratio of prices of the pair of stocks. We calculated ACN/MSFT (ratio of Accenture to Microsoft stock prices)
 - Calculate 60 day Moving Average of Ratio, 5 day Moving Average of Ratio, 60 day Standard Deviation
 - Calculate the **Z-Score**: how many standard deviations the short-term MA is from the long-term MA
 
 ### 4. Trading Strategy
-- `zscore > 1` : ratio is high - short the ratio (short S1, long S2)
-- `zscore < -1` → ratio is low → long the ratio (long S1, short S2)
-- Define entry/exit thresholds based on z-scores
+- `zscore > 1` : ratio is high - short the ratio (short Accenture, long Microsoft)
+- `zscore < -1` : ratio is low → long the ratio (long Accenture, short Microsoft)
+- Exit positions when the z-score approaches zero
+- Add a stoploss if portfolio value reaches below 80% of the initial amount
 - Backtest the strategy with simple long-short logic
 
-### 4. Performance Evaluation
-- Track cumulative returns and visualize performance
-- Compare to a buy-and-hold benchmark
+### 5. Model Tuning
+- Split data into training set (80%) and testing set (20%)
+- Create a Function to simulate the trading strategy and manage portfolio positions
+- Run this function for multiple values of long term MAs on the training set
+- Select the best long term MA value (in our case it was 56)
+- Test this window length on testing set
 
+### 4. Performance Evaluation
+- Simulate the trading strategy
+- Track cumulative returns and visualize performance
+- Compare to S&P 500 Index growth
+  
 ---
 ## Tech Stack
 - Python
@@ -58,8 +67,10 @@ Build and evaluate a Pairs Trading strategy using daily adjusted close prices of
 ```
 ---
 ## Results Summary
-- Identified multiple highly correlated stock pairs (e.g., AAPL-MSFT)
-- Strategy shows promising mean-reversion behavior under simulated backtesting
-- Highlights risks such as false signals and lagging convergence
+- Over a 2-year simulation period, the strategy resulted in a $5015 incrase in portfolio value
+- This is 50% increase in 2 years
+- A total of 44 trades were made throughout this period
+- There is not a single point when a significant drop is observed in the net portfolio value
+- S&P 500 Index grew about 25% during this time period
 
 ---
